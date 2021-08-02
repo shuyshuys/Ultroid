@@ -8,7 +8,7 @@
 from . import *
 from .play import queue_func
 
-
+"""
 def AUTH_FILTER(client, query):
     if query.from_user.id not in VC_AUTHS():
         query.answer("You are Not Authorised to Use Me!", show_alert=True)
@@ -54,3 +54,4 @@ async def exit_vc(_, query):
     await query.answer("Exited !")
     await asyncio.sleep(1)
     await msg.delete()
+"""

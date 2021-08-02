@@ -10,7 +10,32 @@ import random
 
 from . import *
 
-
+@vc_asst("play")
+async def join_handler(event):
+    xqsong = event.text.split(' ', 1)
+    try:
+        qsong = xqsong[1]
+    except IndexError:
+        repl = await event.get_reply_message()
+        qsong = ""
+    if not (qsong or repl and repl.file):
+        return await event.reply("Please give a song name.")
+    x = await event.reply("Downloading...")
+    if qsong:
+        song, thumb, title, duration = await download(event, qsong, event.chat_id)
+    else:
+        dl = await repl.download_media()
+        song = f"VCSONG_{event.chat_id}.raw"
+        await bash(f"ffmpeg -i {dl} -f s16le -ac 2 -ar 48000 -acodec pcm_s16le {song}")
+        thumb = await repl.download_media(thumb=-1) if thumb else None
+        title, duration = repl.file.title, repl.duration
+    CallsClient.input_file_name = song
+    await x.delete()
+    await event.reply(
+        "Started playing {} in {}.\nDuration: {}".format(title, event.chat_id, duration), file=thumb
+    )
+    
+"""
 @asst.on_message(
     filters.command(["play", f"play@{vcusername}"])
     & filters.user(VC_AUTHS())
@@ -125,3 +150,4 @@ async def queue_func(chat_id: int):
 @CallsClient.on_stream_end()
 async def streamhandler(chat_id: int):
     await queue_func(chat_id)
+"""

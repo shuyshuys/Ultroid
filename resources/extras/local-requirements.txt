@@ -48,3 +48,4 @@ img2html
 apscheduler
 ProfanityDetector
 numerize
+tabulate
