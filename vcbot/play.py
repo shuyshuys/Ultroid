@@ -5,14 +5,13 @@
 # PLease read the GNU Affero General Public License in
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
-import os
-import random
 
 from . import *
 
+
 @vc_asst("play")
 async def join_handler(event):
-    xqsong = event.text.split(' ', 1)
+    xqsong = event.text.split(" ", 1)
     try:
         qsong = xqsong[1]
     except IndexError:
@@ -32,9 +31,13 @@ async def join_handler(event):
     CallsClient.input_file_name = song
     await x.delete()
     await event.reply(
-        "Started playing {} in {}.\nDuration: {}".format(title, event.chat_id, duration), file=thumb
+        "Started playing {} in {}.\nDuration: {}".format(
+            title, event.chat_id, duration
+        ),
+        file=thumb,
     )
-    
+
+
 """
 @asst.on_message(
     filters.command(["play", f"play@{vcusername}"])

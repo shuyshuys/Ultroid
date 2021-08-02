@@ -5,8 +5,6 @@
 # PLease read the GNU Affero General Public License in
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
-from . import *
-from .play import queue_func
 
 """
 def AUTH_FILTER(client, query):

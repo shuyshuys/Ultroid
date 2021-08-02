@@ -5,8 +5,6 @@
 # PLease read the GNU Affero General Public License in
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
-from . import *
-
 
 """@asst.on_message(
     filters.command(["clearqueue", f"clearqueue@{vcusername}"])

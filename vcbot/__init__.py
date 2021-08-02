@@ -12,11 +12,12 @@ import asyncio
 import os
 import re
 from datetime import datetime as dt
-from telethon import events
-from pyUltroid import asst, vcClient, udB
+
 import pytgcalls
+from pyUltroid import asst, udB, vcClient
 from pyUltroid.functions.all import bash, dler, time_formatter
 from pyUltroid.misc import sudoers
+from telethon import events
 from youtube_dl import YoutubeDL
 from youtubesearchpython import VideosSearch
 
@@ -26,7 +27,10 @@ QUEUE = {}
 _yt_base_url = "https://www.youtube.com/watch?v="
 vcusername = asst.me.username
 
-CallsClient = pytgcalls.GroupCallFactory(vcClient, pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON).get_file_group_call()
+CallsClient = pytgcalls.GroupCallFactory(
+    vcClient, pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON
+).get_file_group_call()
+
 
 def VC_AUTHS():
     _vc_sudos = udB.get("VC_SUDOS").split() if udB.get("VC_SUDOS") else ""
@@ -118,6 +122,7 @@ async def download(event, query, chat):
     await bash(f'ffmpeg -i "{dl}" -f s16le -ac 1 -acodec pcm_s16le -ar 48000 {song} -y')
     return song, thumb, title, duration
 
+
 """
 idk wtf this is.
 
@@ -136,11 +141,19 @@ async def vc_check(chat, chat_type):
 
 """
 
+
 def vc_asst(dec):
     def ult(func):
         pattern = "^/" + dec  # todo - handlers for assistant?
         asst.add_event_handler(
-            func, events.NewMessage(incoming=True, pattern=pattern, from_users=VC_AUTHS())
+            func,
+            events.NewMessage(incoming=True, pattern=pattern, from_users=VC_AUTHS()),
         )
-        asst.add_event_handler(func, events.NewMessage(incoming=True, pattern=pattern + f"@{vcusername}", from_users=VC_AUTHS()))
+        asst.add_event_handler(
+            func,
+            events.NewMessage(
+                incoming=True, pattern=pattern + f"@{vcusername}", from_users=VC_AUTHS()
+            ),
+        )
+
     return ult
