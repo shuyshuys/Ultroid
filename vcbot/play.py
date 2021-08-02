@@ -32,7 +32,7 @@ async def join_handler(event):
     await x.delete()
     await event.reply(
         "Started playing {} in {}.\nDuration: {}".format(
-            title, event.chat_id, time_formatter(duration*1000)
+            title, event.chat_id, time_formatter(duration * 1000)
         ),
         file=thumb,
     )
