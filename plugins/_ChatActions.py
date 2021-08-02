@@ -143,9 +143,8 @@ async def ChatActionsHandler(ult):  # sourcery no-metrics
 
 
 @ultroid_bot.on(events.NewMessage(incoming=True))
-async def chatBot_replies(e):
-    if not e.media and e.chat:
-        if chatbot_stats(e.chat.id, e.sender_id):
-            msg = get_chatbot_reply(e, e.text)
-            if msg:
-                await e.reply(msg)
+async def chatBot_replies(event):
+    if event.sender_id and chatbot_stats(event.chat_id, event.sender_id) and not event.media:
+        msg = get_chatbot_reply(event, event.text)
+        if msg:
+            await event.reply(msg)
