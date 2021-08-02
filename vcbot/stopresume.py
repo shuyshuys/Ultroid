@@ -7,7 +7,7 @@
 
 from . import *
 
-""""""
+"""
 @asst.on_message(
     filters.command(["stop", f"stop@{vcusername}"])
     & filters.user(VC_AUTHS())
