@@ -15,9 +15,9 @@ from datetime import datetime as dt
 
 import pytgcalls
 from pyUltroid import asst, udB, vcClient
-from pyUltroid.misc._wrappers import eor, eod
 from pyUltroid.functions.all import bash, dler, time_formatter
 from pyUltroid.misc import sudoers
+from pyUltroid.misc._wrappers import eod, eor
 from telethon import events
 from youtube_dl import YoutubeDL
 from youtubesearchpython import VideosSearch
