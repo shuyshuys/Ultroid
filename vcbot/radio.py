@@ -7,7 +7,7 @@
 
 from . import *
 
-"""s"""
+"""
 @asst.on_message(
     filters.command(["radio", f"radio@{vcusername}"])
     & filters.user(VC_AUTHS())
