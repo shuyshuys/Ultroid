@@ -26,7 +26,10 @@ async def join_handler(event):
         dl = await repl.download_media()
         song = f"VCSONG_{event.chat_id}.raw"
         await bash(f"ffmpeg -i {dl} -f s16le -ac 2 -ar 48000 -acodec pcm_s16le {song}")
-        thumb = await repl.download_media(thumb=-1) if thumb else None
+        try:
+            thumb = await repl.download_media(thumb=-1)
+        except IndexError:
+            thumb = None
         title, duration = repl.file.title, repl.duration
     CallsClient.input_file_name = song
     await x.delete()
@@ -36,7 +39,7 @@ async def join_handler(event):
         ),
         file=thumb,
     )
-    os.remove(song)
+    # os.remove(song)
 
 
 """
