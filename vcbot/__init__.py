@@ -15,6 +15,7 @@ from datetime import datetime as dt
 
 import pytgcalls
 from pyUltroid import asst, udB, vcClient
+from pyUltroid.misc._wrappers import eor, eod
 from pyUltroid.functions.all import bash, dler, time_formatter
 from pyUltroid.misc import sudoers
 from telethon import events
@@ -89,12 +90,6 @@ def get_from_queue(chat_id):
     from_user = info["from_user"]
     duration = info["duration"]
     return song, title, from_user, play_this, duration
-
-
-async def eor(message, text, *args, **kwargs):
-    if message.outgoing:
-        return await message.edit_text(text, *args, **kwargs)
-    return await message.reply_text(text, *args, **kwargs)
 
 
 async def download(event, query, chat):
