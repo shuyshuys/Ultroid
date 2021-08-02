@@ -43,3 +43,8 @@ aria2p
 gdown
 qrcode
 shazamio
+jikanpy
+img2html
+apscheduler
+ProfanityDetector
+numerize
