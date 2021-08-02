@@ -32,8 +32,8 @@ async def join_handler(event):
             thumb = None
         title, duration = repl.file.title, repl.duration
     # CallsClient.input_file_name = song
-     group_call = group_call_factory.get_file_group_call(song, play_on_repeat=False)
-     try:
+    group_call = group_call_factory.get_file_group_call(song, play_on_repeat=False)
+    try:
         await group_call.start(event.chat_id)
     except RuntimeError:
         return await x.edit("No voice call active !")
